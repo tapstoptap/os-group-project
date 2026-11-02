@@ -1,0 +1,16 @@
+# Generated binaries and temporary compiler output
+*.exe
+*.o
+__pycache__/
+/pi_single
+/check_common
+
+# Keep local verification tests out of version control
+/tests/
+
+# Keep historical measurements local
+/archive/
+
+# Keep new measurements out of version control unless explicitly selected
+/results/*
+!/results/.gitkeep
