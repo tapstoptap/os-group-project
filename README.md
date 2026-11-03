@@ -21,10 +21,10 @@ Run the following commands from this directory, which contains the Makefile.
 
 ```bash
 make
-./pi_single --points 10000000 --seed 42
+./pi_single --points 1000000000 --seed 42
 ```
 
-The default configuration uses ten million points and seed 42. Only the main thread performs the calculation; no worker threads are created. See [Running on Ubuntu](docs/GUIDE.md) for the complete walkthrough.
+The default configuration uses one billion points and seed 42. Only the main thread performs the calculation; no worker threads are created. See [Running on Ubuntu](docs/GUIDE.md) for the complete walkthrough.
 
 ## Method
 
@@ -34,20 +34,20 @@ Each sample has coordinates in `[-1, 1]`. A point is counted when `x*x + y*y <= 
 pi_estimate = 4.0 * points_inside / total_points
 ```
 
-Both counters use `uint64_t`; the final ratio uses floating-point arithmetic. A larger sample count reduces typical statistical error, but does not guarantee that every estimate becomes closer to pi.
+Both counters use `long long`; the final ratio uses floating-point arithmetic. A larger sample count reduces typical statistical error, but does not guarantee that every estimate becomes closer to pi.
 
 ## Usage
 
 ```bash
 ./pi_single
-./pi_single 10000000 42
-./pi_single --points 10000000 --seed 42
+./pi_single 1000000000 42
+./pi_single --points 1000000000 --seed 42
 ./pi_single --help
 ```
 
 | Argument | Default | Accepted values |
 |---|---|---|
-| `--points` | `10000000` | Decimal integers from 1 to `18446744073709551615` |
+| `--points` | `1000000000` | Decimal integers from 1 to `9223372036854775807` |
 | `--seed` | `42` | Decimal integers from 0 to `UINT_MAX`, normally `4294967295` on Ubuntu |
 
 Invalid input produces an error on stderr and a nonzero exit status without a result row. Signs, whitespace, scientific notation, duplicate options, and unsupported options are rejected.

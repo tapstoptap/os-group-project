@@ -13,9 +13,9 @@ import sys
 FIELDS = ['approach', 'threads', 'k', 'points', 'inside', 'pi', 'time_sec']
 
 
-def uint64(text):
-    if not text.isascii() or not text.isdecimal() or int(text) > 2**64 - 1:
-        raise argparse.ArgumentTypeError('expected a decimal uint64')
+def nonnegative_long_long(text):
+    if not text.isascii() or not text.isdecimal() or int(text) > 2**63 - 1:
+        raise argparse.ArgumentTypeError('expected a nonnegative decimal long long (max 9223372036854775807)')
     return int(text)
 
 
@@ -31,8 +31,8 @@ def inspect_command(command):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--binary', default='./pi_single')
-    parser.add_argument('--points', type=uint64, default=10_000_000)
-    parser.add_argument('--seed', type=uint64, default=42)
+    parser.add_argument('--points', type=nonnegative_long_long, default=1_000_000_000)
+    parser.add_argument('--seed', type=nonnegative_long_long, default=42)
     parser.add_argument('--runs', type=int, default=5)
     parser.add_argument('--warmups', type=int, default=1)
     parser.add_argument('--output', type=Path)

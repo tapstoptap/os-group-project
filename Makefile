@@ -23,7 +23,7 @@ check:
 endif
 
 bench: pi_single
-	$(PYTHON) scripts/benchmark_baseline.py --binary ./pi_single --points 10000000 --seed 42 --runs 5
+	$(PYTHON) scripts/benchmark_baseline.py --binary ./pi_single --points 1000000000 --seed 42 --runs 5
 
 clean:
 	rm -f pi_single pi_single.exe check_common check_common.exe
