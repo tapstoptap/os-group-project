@@ -24,6 +24,7 @@ void* monte_carlo_worker(void* arg) {
     }
 
     data->circle_count = local_circle_count;
+    return NULL;
 }
 
 
@@ -37,11 +38,20 @@ int main(int argc , char* argv [])
     int num_threads = atoi(argv[1]);
     long long n = atoll(argv[2]);
 
+    if (num_threads <= 0 || n <= 0) {
+        fprintf(stderr, "Error: num-threads and n must be positive integers\n");
+        return 1;
+    }
+
+    if (num_threads > n) {
+        num_threads = (int)n;
+    }
+
     pthread_t threads[num_threads];
     thread_data_t thread_data[num_threads];
 
-    long long base_samples = total_points / num_threads;
-    long long remainder = total_points % num_threads;
+    long long base_samples = n / num_threads;
+    long long remainder = n % num_threads;
     unsigned int base_seed = (unsigned int)time(NULL);
     struct timespec start_time, end_time;
 
@@ -68,10 +78,10 @@ int main(int argc , char* argv [])
 
     double elapsed_time = (end_time.tv_sec - start_time.tv_sec) + (end_time.tv_nsec - start_time.tv_nsec) / 1e9;
 
-    double estimated_pi = 4.0 * (double)total_circle_points / (double)total_points;
+    double estimated_pi = 4.0 * (double)total_circle_points / (double)n;
 
     printf("Estimated Pi : %.6f\n", estimated_pi);
-    printf("Total Points : %lld\n", total_points);
+    printf("Total Points : %lld\n", n);
     printf("Circle Hits  : %lld\n", total_circle_points);
     printf("Threads      : %d\n", num_threads);
     printf("Time Taken   : %.6f seconds\n", elapsed_time);
