@@ -14,7 +14,7 @@ Person 1 implements assignment Sections 1, 2, and 3.1: the Monte Carlo model, si
 | Baseline initialization | `mc_seed(&rng, base_seed)` |
 | Future worker initialization | `mc_seed(&rng, base_seed + thread_id)`, after range checks |
 | Work division | `mc_points_for_thread(M,p,id)`, requiring `p > 0` and `id < p` |
-| Counters | `uint64_t` |
+| Counters | `long long` |
 | CSV | `approach,threads,k,points,inside,pi,time_sec`; no header |
 | Build settings | C11, `-O2 -Wall -Wextra -Wpedantic -pthread` |
 | Timing | `now_sec()`; check for a negative failure result |

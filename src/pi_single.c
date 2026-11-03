@@ -28,7 +28,7 @@ int main(int argc, char **argv)
     }
 
     /* The measured work: generate points, test the circle, count hits. */
-    uint64_t inside = mc_count_inside(config.points, &rng);
+    long long inside = mc_count_inside(config.points, &rng);
 
     double finish = now_sec();
     if (finish < 0.0) {

@@ -53,12 +53,12 @@ Use the same optimization settings for all approaches. The baseline does not cre
 ## 4 Run
 
 ```bash
-./pi_single 10000000 42
-./pi_single --points 10000000 --seed 42
+./pi_single 1000000000 42
+./pi_single --points 1000000000 --seed 42
 ./pi_single --help
 ```
 
-The point count must be a positive decimal uint64 integer. The seed must fit `unsigned int`: normally 0 to 4294967295 on Ubuntu. With no arguments, the program uses ten million points and seed 42.
+The point count must be a positive decimal long long integer. The seed must fit `unsigned int`: normally 0 to 4294967295 on Ubuntu. With no arguments, the program uses one billion points and seed 42.
 
 The output is one headerless CSV row:
 
@@ -97,7 +97,7 @@ For explicit settings:
 
 ```bash
 python3 scripts/benchmark_baseline.py \
-    --binary ./pi_single --points 10000000 --seed 42 --runs 5
+    --binary ./pi_single --points 1000000000 --seed 42 --runs 5
 ```
 
 The script discards one warm-up, then records five runs with the same initial seed. A new directory under `results` contains:
@@ -127,10 +127,10 @@ gcc --version
 
 For a VM, record its assigned vCPU count separately from host hardware. Keep total points, RNG, compiler settings, and timing scope consistent.
 
-For a larger experiment:
+To record ten runs of the same one-billion-point workload:
 
 ```bash
-python3 scripts/benchmark_baseline.py --points 100000000 --seed 42 --runs 10
+python3 scripts/benchmark_baseline.py --points 1000000000 --seed 42 --runs 10
 ```
 
 After changing the point count, remeasure all approaches in the comparison. Fixed-seed timing repetitions reuse samples; they do not generate independent accuracy observations.
@@ -144,7 +144,7 @@ After changing the point count, remeasure all approaches in the comparison. Fixe
 | `./pi_single` does not exist | Run `make`; do not use an old Windows executable |
 | `make check` reports missing local tests | Restore the ignored `tests/` files if verification is needed; build and benchmark remain available |
 | Make reports `missing separator` | Restore recipe tabs or use the GCC command above |
-| `Invalid arguments` | Use decimal integers such as `10000000`, not `1e7` |
+| `Invalid arguments` | Use decimal integers such as `1000000000`, not `1e9` |
 | Seed is out of range | Use a value no larger than `UINT_MAX` |
 | Benchmark time is zero | Increase the sample count |
 | Another machine gives different hits | Check libc; `rand_r` sequences can differ across implementations |
