@@ -1,0 +1,9 @@
+date: Mon Nov  2 11:05:54 PM +07 2026
+cores (nproc): 5
+CPU(s):                                  5
+Model name:                              AMD Ryzen 5 8645HS w/ Radeon 760M Graphics
+Thread(s) per core:                      1
+Core(s) per socket:                      5
+Linux nhanvu-VirtualBox 7.0.0-38-generic #38-Ubuntu SMP PREEMPT_DYNAMIC Fri Sep  4 09:10:14 UTC 2026 x86_64 GNU/Linux
+gcc (Ubuntu 15.2.0-16ubuntu1) 15.2.0
+N=20000000 RUNS=5 SEED=12345 THREADS=[1 2 4 5 10 16 32 64 100 ] KS=[1 10 100 1000 10000 100000 0] KTHREADS=5
