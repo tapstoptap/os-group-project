@@ -1,0 +1,2 @@
+approach,threads,points,seed,runs,inside,pi,mean_seconds,stdev_seconds,min_seconds,max_seconds,speedup
+single,1,1000000000,42,5,785398162,3.141592648,7.4955165534,0.03736188746316632,7.442398743,7.536473366,1.0
